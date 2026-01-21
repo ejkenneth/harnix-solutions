@@ -1,0 +1,524 @@
+// Variables et configuration - PALETTE ORANGE PROFONDE
+:root {
+  // Palette orange profonde et riche
+  --color-primary: #e26736;           // Orange profond (moins clair que #FF6B35)
+  --color-primary-dark: #e45b29;      // Orange foncé intense
+  --color-primary-light: #FF7A3D;     // Orange moyen
+  --color-secondary: #FF8C42;         // Orange doré secondaire
+  --color-accent: #10b981;            // Conservé (vert)
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  
+  // RGB versions for rgba usage
+  --color-primary-rgb: 229, 90, 36;    // #E55A24 - Orange profond
+  --color-secondary-rgb: 255, 140, 66; // #FF8C42
+  --color-white-rgb: 255, 255, 255;
+  --color-bg-dark-rgb: 17, 24, 39;
+  
+  // Dark mode
+  --color-text-dark: #f9fafb;
+  --color-text-light-dark: #d1d5db;
+  --color-bg-dark: #111827;
+  --color-bg-secondary-dark: #1f2937;
+  --color-border-dark: #374151;
+  
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+  
+  // Ombres adaptées à l'orange profond
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(229, 90, 36, 0.15); // Teinte orange profond
+  --shadow-orange: 0 0 0 3px rgba(229, 90, 36, 0.1); // Ombre focus orange
+  
+  // Bordures arrondies comme dans la version originale
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --color-text: var(--color-text-dark);
+  --color-text-light: var(--color-text-light-dark);
+  --color-bg: var(--color-bg-dark);
+  --color-bg-secondary: var(--color-bg-secondary-dark);
+  --color-border: var(--color-border-dark);
+}
+
+// Reset et base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  transition: var(--transition);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typographie
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition);
+  
+  &:hover {
+    color: var(--color-primary-dark);
+  }
+}
+
+// Layout
+.container {
+  width: 100%;
+  max-width: 1024px; /* Réduction de 20% pour un regroupement plus marqué */
+  margin: 0 auto;
+  padding: 0 3rem; /* Marges latérales plus importantes dès le départ */
+  
+  @media (min-width: 768px) {
+    padding: 0 4rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 0 6rem; /* Marges élégantes sur desktop */
+  }
+}
+
+.section {
+  padding: 5rem 0;
+  
+  @media (min-width: 768px) {
+    padding: 6rem 0;
+  }
+}
+
+// Boutons - Adaptés à l'orange profond avec bords arrondis
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md); // Bord arrondi
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  border-radius: var(--radius-md); // Bord arrondi
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+    color: white;
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary {
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); // Bord arrondi
+  
+  &:hover:not(:disabled) {
+    background: var(--color-border);
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md); // Bord arrondi
+  
+  &:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: white;
+  }
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  border-radius: var(--radius-md); // Bord arrondi
+}
+
+// Cards avec bords arrondis
+.card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); // Bord arrondi
+  padding: 2rem;
+  transition: var(--transition);
+  
+  &:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+}
+
+// Formulaires avec bords arrondis
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); // Bord arrondi
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: var(--transition);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-orange);
+  }
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  border-radius: var(--radius-md); // Bord arrondi
+}
+
+// Utilitaires
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+// Marges utilitaires
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+// Grid
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+// Classes utilitaires supplémentaires pour l'orange profond
+.bg-gradient-orange {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-md); // Bord arrondi
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-primary {
+  border-color: var(--color-primary);
+}
+
+.bg-primary-light {
+  background-color: rgba(var(--color-primary-rgb), 0.1);
+  border-radius: var(--radius-md); // Bord arrondi
+}
+
+// Badges et alertes avec bords arrondis
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm); // Bord arrondi
+}
+
+.badge-orange {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  border-radius: var(--radius-sm); // Bord arrondi
+}
+
+.badge-outline-orange {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm); // Bord arrondi
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: var(--radius-md); // Bord arrondi
+  margin-bottom: 1rem;
+}
+
+.alert-orange {
+  background-color: rgba(var(--color-primary-rgb), 0.1);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary-dark);
+  border-radius: var(--radius-md); // Bord arrondi
+}
+
+// Avatars avec bords arrondis
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; // Cercle parfait
+  overflow: hidden;
+}
+
+.avatar-lg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; // Cercle parfait
+}
+
+.avatar-sm {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; // Cercle parfait
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+// Loading - Adapté à l'orange profond
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%; // Cercle parfait
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-orange {
+  border: 3px solid rgba(229, 90, 36, 0.3);
+  border-top-color: var(--color-primary);
+  border-radius: 50%; // Cercle parfait
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Override pour éléments qui pourraient avoir des couleurs bleues en dur
+::selection {
+  background-color: rgba(229, 90, 36, 0.3);
+}
+
+::-moz-selection {
+  background-color: rgba(229, 90, 36, 0.3);
+}
+
+// Progress bars avec bords arrondis
+.progress-bar {
+  height: 8px;
+  background-color: var(--color-border);
+  border-radius: 4px; // Bord arrondi
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: 4px; // Bord arrondi
+  transition: width 0.3s ease;
+}
+
+// Tags et chips avec bords arrondis
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border-radius: var(--radius-sm); // Bord arrondi
+  font-size: 0.875rem;
+  margin: 0.125rem;
+}
+
+.tag-orange {
+  background-color: rgba(var(--color-primary-rgb), 0.1);
+  color: var(--color-primary-dark);
+  border-radius: var(--radius-sm); // Bord arrondi
+}
+
+// Modales et overlays avec bords arrondis
+.modal {
+  background: var(--color-bg);
+  border-radius: var(--radius-lg); // Bord arrondi
+  box-shadow: var(--shadow-xl);
+  max-width: 500px;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+// Tables avec bords arrondis
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  th {
+    background-color: var(--color-bg-secondary);
+    font-weight: 600;
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.table-rounded {
+  border-radius: var(--radius-md); // Bord arrondi
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+/* Micro-interactions pour boutons et cartes - Engagement subtil */
+.btn {
+  transition: var(--transition); /* Utilise la transition existante */
+  
+  &:hover {
+    transform: scale(1.02); /* Léger zoom pour attirer l'attention */
+    box-shadow: var(--shadow-md); /* Ombre renforcée pour profondeur */
+  }
+  
+  &:active {
+    transform: scale(0.98); /* Feedback tactile */
+  }
+}
+
+.feature-card, .solution-card, .bundle-card {
+  transition: var(--transition);
+  
+  &:hover {
+    transform: translateY(-2px); /* Léger soulèvement pour dynamisme */
+    box-shadow: var(--shadow-lg);
+  }
+}
