@@ -83,6 +83,14 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  // Masquer le bouton "Devis gratuit" sur mobile (< 768px)
+  // Le bouton .btn.btn-primary reste visible sur desktop uniquement
+  @media (max-width: 767px) {
+    .btn {
+      display: none;
+    }
+  }
 }
 
 .theme-toggle {
@@ -97,6 +105,10 @@
   &:hover {
     background: var(--color-border);
     transform: scale(1.1);
+  }
+
+  @media (max-width: 767px) {
+    font-size: 1rem;
   }
 }
 

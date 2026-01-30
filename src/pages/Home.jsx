@@ -1,17 +1,12 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { solutions, bundles } from '../data/mockData'
+import HeroSection from '../components/Layout/HeroSection.jsx'
 import '../styles/Home.scss'
 
 const Home = () => {
   const featuredSolutions = solutions.slice(0, 4)
   const featuredBundles = bundles.slice(0, 2)
-
-  // Variants réutilisables pour apparitions hero UI
-  const heroVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
 
   const staggerContainer = {
     hidden: { opacity: 0 },
@@ -32,67 +27,7 @@ const Home = () => {
   return (
     <div className="home">
       {/* Hero Section */}
-      <section className="hero">
-        <div className="container">
-          <motion.div
-            className="hero-content-home"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.h1
-              variants={heroVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              Bienvenue chez <span className="gradient-text-home">Harnix SAS</span>
-            </motion.h1>
-            <motion.p
-              className="hero-subtitle-home"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              8 solutions professionnelles pour automatiser, optimiser et faire croître votre business.
-              Tarifs transparents, déploiement rapide, support dédié.
-            </motion.p>
-            <motion.div
-              className="hero-cta-home"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <Link to="/devis" className="btn btn-primary btn-lg">
-                Obtenir un devis gratuit
-              </Link>
-              <Link to="/solutions" className="btn btn-outline btn-lg">
-                Découvrir les solutions
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="hero-stats-home"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <div className="stat-home">
-              <div className="stat-number-home">8</div>
-              <div className="stat-label-home">Solutions</div>
-            </div>
-            <div className="stat-home">
-              <div className="stat-number-home">5</div>
-              <div className="stat-label-home">Bundles</div>
-            </div>
-            <div className="stat-home">
-              <div className="stat-number-home">100+</div>
-              <div className="stat-label-home">Clients</div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Solutions Featured */}
       <section className="section solutions-preview">

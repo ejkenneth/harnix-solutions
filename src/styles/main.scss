@@ -112,7 +112,7 @@ a {
 // Layout
 .container {
   width: 100%;
-  max-width: 1024px; /* Réduction de 20% pour un regroupement plus marqué */
+  max-width: 1196px; /* Réduction de 20% pour un regroupement plus marqué */
   margin: 0 auto;
   padding: 0 3rem; /* Marges latérales plus importantes dès le départ */
   
@@ -520,5 +520,47 @@ a {
   &:hover {
     transform: translateY(-2px); /* Léger soulèvement pour dynamisme */
     box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ======================================
+   UI Components - Isolated Styles
+   ====================================== */
+
+/* ColorSideEffect - Diagonal colored background effect */
+.color-side-effect {
+  position: absolute;
+  right: 0;
+  top: 0;
+  pointer-events: none;
+  
+  /* Direction modifiers */
+  &--right {
+    right: 0;
+    left: auto;
+  }
+  
+  &--left {
+    left: 0;
+    right: auto;
+    clip-path: polygon(0 0%, 70% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+/* SidedTextLayout - Two-column responsive layout */
+.sided-text-layout {
+  width: 100%;
+  display: grid;
+  align-items: center;
+  
+  .sided-text-column {
+    min-width: 0; /* Prevent text overflow */
+    word-wrap: break-word;
+  }
+  
+  .sided-content-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

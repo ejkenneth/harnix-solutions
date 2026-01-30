@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2024 Harnix SAS. Tous droits réservés.</p>
+          <p>Copyright &copy; 2024 Harnix SAS. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

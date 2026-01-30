@@ -70,6 +70,46 @@ harnixsas/
 └── README.md
 ```
 
+
+
+```
+harnixsas/
+├── public/                         # Assets statiques 
+├── src/                         
+│   ├── components/                 # Composants réutilisables
+│   │   └── Layout/                 # Navigation, Footer, Layout principal
+│   │       ├── Layout.jsx          # Layout avec thème et ScrollToTop
+│   │       ├── Navigation.jsx      # Navigation avec hamburger mobile
+│   │       ├── ScrollToTop.jsx     # Scroll automatique vers le haut
+│   │       └── Footer.jsx          # Footer avec liens
+│   │
+│   ├── data/                       # Données mock / fixtures
+│   │   └── mockData.js             # Solutions, bundles, helpers
+│   ├── pages/                      # Pages de l'application
+│   │   ├── Home.jsx                # Page d'accueil orientée conversion
+│   │   ├── Solutions.jsx           # Liste des 8 solutions
+│   │   ├── SolutionDetail.jsx      # Détail solution + cross-sell
+│   │   ├── Bundles.jsx             # 5 bundles économiques
+│   │   └── Devis.jsx               # Formulaire de devis
+│   ├── styles/                     # Styles globaux et variables
+│   │   ├── Bundles.scss           
+│   │   ├── Devis.scss             
+│   │   ├── Footer.scss             
+│   │   ├── Home.scss              
+│   │   ├── main.scss               # Variables, reset, utilitaires 
+│   │   ├── Navigation.scss         
+│   │   ├── SolutionDetail.scss     
+│   │   └── Solution.scss
+│   ├── App.jsx                     # Router principal + configuration globale
+│   └── main.jsx                    # Point d'entrée (montage React)
+├── .gitignore
+├── package.json
+├── vite.config.js
+├── vercel.json                      # Config Vercel
+└── README.md
+```
+
+
 ## 🚀 Installation & Démarrage
 
 ### Prérequis
@@ -129,7 +169,7 @@ pnpm preview
 Page d'accueil orientée conversion avec :
 - Hero section avec CTA principal
 - Statistiques (8 solutions, 5 bundles, 100+ clients)
-- Preview des 3 solutions phares
+- Preview des 4 solutions phares
 - Preview des 2 bundles populaires
 - CTA final pour génération de leads
 
