@@ -1,30 +1,12 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { solutions, getSolutionBySlug } from '../data/mockData'
+import { staggerContainer, fadeInUp, sectionHeader, ctaVariant, viewportOnce, viewportSingleTime } from '../components/ui/animVariants'
 import '../styles/SolutionDetail.scss'
 
 const SolutionDetail = () => {
-  // Variants réutilisables pour apparitions hero UI
-  const heroVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const staggerItem = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
+  // Animation variants are imported from components/ui/animVariants
+  // Used for consistent animations across all pages and sections
 
   const { slug } = useParams()
   const navigate = useNavigate()
@@ -57,9 +39,10 @@ const SolutionDetail = () => {
         <div className="container">
           <motion.div
             className="hero-content"
-            variants={heroVariants}
+            variants={sectionHeader}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={viewportSingleTime}
           >
             <button onClick={() => navigate(-1)} className="back-button">
               ← Retour
@@ -90,10 +73,10 @@ const SolutionDetail = () => {
         <div className="container">
           <motion.h2
             className="sell-title"
-            variants={staggerItem}
+            variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={viewportOnce}
           >
             Fonctionnalités principales
           </motion.h2>
@@ -102,13 +85,13 @@ const SolutionDetail = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
           >
             {solution.features.map((feature, idx) => (
               <motion.div
                 key={idx}
                 className="feature-card"
-                variants={staggerItem}
+                variants={fadeInUp}
                 whileHover={{ scale: 1.03 }}
               >
                 <div className="feature-icon">✓</div>
@@ -124,10 +107,10 @@ const SolutionDetail = () => {
         <div className="container">
           <motion.h2
             className="sell-title"
-            variants={staggerItem}
+            variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={viewportOnce}
           >
             Cas d&apos;usage
           </motion.h2>
@@ -136,13 +119,13 @@ const SolutionDetail = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
           >
             {solution.useCases.map((useCase, idx) => (
               <motion.div
                 key={idx}
                 className="use-case-card"
-                variants={staggerItem}
+                variants={fadeInUp}
                 whileHover={{ y: -2 }}
               >
                 <h3>{useCase.title}</h3>
@@ -159,19 +142,19 @@ const SolutionDetail = () => {
           <div className="container">
             <motion.h2
               className="sell-title"
-              variants={staggerItem}
+              variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={viewportOnce}
             >
               Solutions complémentaires
             </motion.h2>
             <motion.p
               className="cross-sell-intro"
-              variants={staggerItem}
+              variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={viewportOnce}
             >
               Ces solutions fonctionnent parfaitement avec {solution.name} pour maximiser votre productivité.
             </motion.p>
@@ -180,13 +163,13 @@ const SolutionDetail = () => {
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={viewportOnce}
             >
               {crossSellSolutions.map((sol) => (
                 <motion.div
                   key={sol.id}
                   className="cross-sell-card"
-                  variants={staggerItem}
+                  variants={fadeInUp}
                   whileHover={{ scale: 1.03 }}
                 >
                   <div className="cross-sell-icon">{sol.icon}</div>
@@ -211,10 +194,10 @@ const SolutionDetail = () => {
         <div className="container">
           <motion.div
             className="cta-content"
-            variants={staggerItem}
+            variants={ctaVariant}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={viewportOnce}
           >
             <h2>Prêt à démarrer avec {solution.name} ?</h2>
             <p>Obtenez un devis personnalisé et une démonstration gratuite</p>
