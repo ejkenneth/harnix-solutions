@@ -2,27 +2,14 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { solutions, bundles } from '../data/mockData'
 import HeroSection from '../components/Layout/HeroSection.jsx'
+import { staggerContainer, fadeInUp, ctaVariant, viewportOnce } from '../components/ui/animVariants'
 import '../styles/Home.scss'
 
 const Home = () => {
   const featuredSolutions = solutions.slice(0, 4)
   const featuredBundles = bundles.slice(0, 2)
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15, // Décalage de 150ms entre enfants
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const staggerItem = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
+  // Les variantes d'animation sont importées depuis components/ui/animVariants pour plus de cohérence
 
   return (
     <div className="home">
@@ -34,9 +21,10 @@ const Home = () => {
         <div className="container">
           <motion.div
             className="section-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
             <h2>Nos solutions phares</h2>
             <p>Découvrez nos solutions les plus populaires</p>
@@ -47,13 +35,13 @@ const Home = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
           >
             {featuredSolutions.map((solution) => (
               <motion.div
                 key={solution.id}
                 className="solution-card"
-                variants={staggerItem}
+                variants={fadeInUp}
                 whileHover={{ scale: 1.03 }}
               >
                 <div className="solution-icon">{solution.icon}</div>
@@ -70,9 +58,10 @@ const Home = () => {
 
           <motion.div
             className="text-center mt-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
             <Link to="/solutions" className="btn btn-outline btn-lg">
               Voir toutes les solutions
@@ -86,10 +75,10 @@ const Home = () => {
         <div className="container">
           <motion.div
             className="section-header"
-            variants={staggerItem}
+            variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={viewportOnce}
           >
             <h2>Bundles économiques</h2>
             <p>Économisez jusqu&apos;à 40% avec nos packs tout-en-un</p>
@@ -100,13 +89,13 @@ const Home = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
           >
             {featuredBundles.map((bundle) => (
               <motion.div
                 key={bundle.id}
                 className="bundle-card"
-                variants={staggerItem}
+                variants={fadeInUp}
                 whileHover={{ scale: 1.03 }}
               >
                 <div className="bundle-badge">Économie: {bundle.savings}</div>
@@ -131,9 +120,10 @@ const Home = () => {
 
           <motion.div
             className="text-center mt-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
             <Link to="/bundles" className="btn btn-outline btn-lg">
               Voir tous les bundles
@@ -147,10 +137,10 @@ const Home = () => {
         <div className="container">
           <motion.div
             className="cta-content"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            variants={ctaVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
             <h2>Prêt à transformer votre entreprise ?</h2>
             <p>Obtenez un devis personnalisé en moins de 24h</p>

@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { solutions, bundles } from '../data/mockData'
+import { sectionHeader, viewportOnce } from '../components/ui/animVariants'
 import '../styles/Devis.scss'
 
 const Devis = () => {
-  // Variants réutilisables pour apparitions hero UI
-  const heroVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
+  // Variantes d'animation importées depuis components/ui/animVariants pour assurer la cohérence sur toutes les pages
 
   const [formData, setFormData] = useState({
     nom: '',
@@ -135,9 +132,10 @@ const Devis = () => {
         <div className="container">
           <motion.div
             className="hero-content"
-            variants={heroVariants}
+            variants={sectionHeader}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
             <h1>Demande de devis</h1>
             <p className="hero-subtitle">

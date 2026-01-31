@@ -1,30 +1,11 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { solutions } from '../data/mockData'
+import { staggerContainer, fadeInUp, sectionHeader, viewportOnce } from '../components/ui/animVariants'
 import '../styles/Solutions.scss'
 
 const Solutions = () => {
-  // Variants réutilisables pour apparitions hero UI
-  const heroVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const staggerItem = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
+  // Variantes d'animation importées depuis components/ui/animVariants pour assurer la cohérence sur toutes les pages
 
   return (
     <div className="solutions-page">
@@ -32,9 +13,10 @@ const Solutions = () => {
         <div className="container">
           <motion.div
             className="hero-content"
-            variants={heroVariants}
+            variants={sectionHeader}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
             <h1>Nos Solutions SaaS</h1>
             <p className="hero-subtitle">
@@ -52,13 +34,13 @@ const Solutions = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
           >
             {solutions.map((solution) => (
               <motion.div
                 key={solution.id}
                 className="solution-card-large"
-                variants={staggerItem}
+                variants={fadeInUp}
                 whileHover={{ scale: 1.03 }}
               >
                 <div className="solution-header">

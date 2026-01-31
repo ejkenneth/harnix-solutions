@@ -1,30 +1,11 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { bundles, getSolutionBySlug } from '../data/mockData'
+import { staggerContainer, fadeInUp, sectionHeader, viewportOnce } from '../components/ui/animVariants'
 import '../styles/Bundles.scss'
 
 const Bundles = () => {
-  // Variants réutilisables pour apparitions hero UI
-  const heroVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const staggerItem = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
+  // Variantes d'animation importées depuis components/ui/animVariants pour assurer la cohérence sur toutes les pages
 
   return (
     <div className="bundles-page">
@@ -33,9 +14,10 @@ const Bundles = () => {
         <div className="container">
           <motion.div
             className="hero-content"
-            variants={heroVariants}
+            variants={sectionHeader}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
             <h1>Bundles & Packs</h1>
             <p className="hero-subtitle">
@@ -54,7 +36,7 @@ const Bundles = () => {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
           >
             {bundles.map((bundle) => {
               const bundleSolutions = bundle.solutions.map(slug => 
@@ -65,7 +47,7 @@ const Bundles = () => {
                 <motion.div
                   key={bundle.id}
                   className="bundle-card-large"
-                  variants={staggerItem}
+                  variants={fadeInUp}
                   whileHover={{ scale: 1.03 }}
                 >
                   <div className="bundle-header">

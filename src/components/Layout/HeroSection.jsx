@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import AnimatedImageFrame from './AnimatedImageFrame'
 import ColorSideEffect from '../ui/ColorSideEffect'
 import SidedTextLayout from '../ui/SidedTextLayout'
+import { staggerContainer, fadeInUp, viewportSingleTime } from '../ui/animVariants'
 
 /*
   HeroSection
@@ -21,38 +22,29 @@ import SidedTextLayout from '../ui/SidedTextLayout'
 */
 
 const HeroSection = () => {
-  // Variantes d'animation pour le défilement décalé du texte
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.08, delayChildren: 0.2 }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
-  }
+  // Animation orchestration: staggerContainer orchestrates child animations
+  // fadeInUp variant applies individual fade + subtle upward motion
+  // viewportOnce ensures animations trigger once when entering viewport
 
   // Contenu principal du texte avec animation
   const textContent = (
     <motion.div
       className="hero-content-home"
-      variants={containerVariants}
+      variants={staggerContainer}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '0px 0px -100px 0px' }}
+      viewport={viewportSingleTime}
     >
-      <motion.h1 className="hero-title-home" variants={itemVariants}>
+      <motion.h1 className="hero-title-home" variants={fadeInUp}>
         Bienvenue chez <span className="gradient-text-home">Harnix</span>
       </motion.h1>
 
-      <motion.p className="hero-subtitle-home" variants={itemVariants}>
+      <motion.p className="hero-subtitle-home" variants={fadeInUp}>
         8 solutions professionnelles pour automatiser, optimiser et faire croître votre business.
         Tarifs transparente, déploiement rapide, support dédié.
       </motion.p>
 
-      <motion.div className="hero-cta-home" variants={itemVariants}>
+      <motion.div className="hero-cta-home" variants={fadeInUp}>
         <Link to="/devis" className="btn btn-primary btn-lg">
           Obtenir un devis
         </Link>
@@ -98,7 +90,7 @@ const HeroSection = () => {
           className="hero-stats-home"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={viewportSingleTime}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
           <div className="stat-home">
