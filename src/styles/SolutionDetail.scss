@@ -131,9 +131,13 @@
 
 .use-cases-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax((300px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
+
+  @media (max-width : 768px) {
+    grid-template-columns: repeat(auto-fit, minmax((300px, 100%), 1fr));
+  }
 }
 
 .use-case-card {
@@ -173,8 +177,12 @@
 
 .cross-sell-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax((280px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+
+  @media (max-width : 768px){
+    grid-template-columns: repeat(auto-fit, minmax((280px, 100%), 1fr));
+  }
 }
 
 .cross-sell-card {
