@@ -25,11 +25,13 @@
 
 .bundles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); /* Réduction de 400px à 360px pour regrouper les cartes */
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); /* Réduction de 400px à 360px pour regrouper les cartes */
   gap: 3rem;
   
   @media (max-width: 768px) {
+    display: grid;
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
@@ -42,6 +44,12 @@
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+
+  // Responsive adjustments pour mobile
+  @media (max-width: 768px) {
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
   
   &:hover {
     box-shadow: var(--shadow-xl);

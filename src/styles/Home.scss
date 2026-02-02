@@ -389,9 +389,16 @@
 
 .bundles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax((320px, 100%), 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-content: center;
+  }
 }
 
 .bundle-card {
@@ -401,6 +408,11 @@
   padding: 2.5rem;
   position: relative;
   transition: var(--transition);
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+    margin-bottom: 1rem;
+  }
   
   &:hover {
     box-shadow: var(--shadow-xl);
